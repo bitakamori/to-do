@@ -1,6 +1,17 @@
+<script setup>
+  //
+</script>
+
+
 <template>
+
+<h3>ALO</h3>
+</template>
+
+
+<!--<template>
   <v-container>
-    <!-- <v-responsive class="align-center text-center fill-height">
+    <v-responsive class="align-center text-center fill-height">
      <v-row align="center">
      <v-col cols="2">1</v-col>
      <v-col>2</v-col>
@@ -16,7 +27,7 @@
      <v-col cols="2">1</v-col>
      <v-col cols="5">2</v-col>
      <v-col cols="12">3</v-col>  
-     </v-row>    </v-responsive> -->
+     </v-row>    </v-responsive>
 
      <div class="custom d-flex flex-wrap"> 
       <dir v-for="n in 10" :key="n" class="card">
@@ -52,4 +63,4 @@
   background: blue;
   border: 1px solid white;;
 }
-</style>
+</style>  -->
