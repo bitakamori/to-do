@@ -65,7 +65,7 @@ export default {
     <v-container class="h-75 w-75 rounded-xl bg-white d-flex align-center">
       <v-row class="h-100 w-100 d-flex align-center">
         <v-col class="w-50 h-100 bg-white d-flex align-center">
-          <v-img class="rounded-xl rounded-be-0" src="bg3.png" cover></v-img>
+          <v-img class="rounded-xl rounded-be-0" src="/public/bg3.png" cover></v-img>
         </v-col>
 
         <v-col
@@ -133,7 +133,7 @@ export default {
             </v-form>
           </v-sheet>
           <div class="ml-16 pl-16 img-container">
-            <v-img class="w-50" src="bee.png" position="absolute" cover></v-img>
+            <v-img class="w-50" src="/public/bee.png" position="absolute" cover></v-img>
           </div>
         </v-col>
       </v-row>
