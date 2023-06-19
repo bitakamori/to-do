@@ -4,28 +4,35 @@ import { RouterLink, RouterView } from "vue-router";
 export default {
   data: () => ({
     Username: "",
+    // lowerCaseRegex:/^[a-z]+$/,
     UsernameRules: [
       (value) => {
+        if(!value) return "Insira seu Username"
         if (value.includes(" ")) return "Username nao deve conter espaço";
-        if (value.includes()) return "Username nao deve conter letra maiuscula"; 
-        return true;
+        if ((/^[a-z]+$/).test(value)) return true;
+        return "Username nao deve conter letra maiuscula"; 
       },
     ],
     email: "",
+    // emailRegex: /\S+@\S+\.\S+/,
     emailRules: [
       (value) => {
         if (!value) return "Email must be at least 1 character.";
-        if (/\S+@\S+\.\S+/.test(value)) return true;
+        if ((/\S+@\S+\.\S+/).test(value)) return true;
         return "Email must be valid";
       },
     ],
     show1: false,
       show2: true,
       password: '',
+      // specialCharRegex: /[!@#$%^&*]/,
+      // numberRegex: /[0-9]/,
       passwordRules: [
         value => {
           if (value.length < 8) return 'Password must be at least 8 character.';
-          if ( va) return 'Password precisa ter no minimo um numero';
+          console.log(value.length)
+          if (!(/[!@#$%^&*]/).test(value)) return 'Password precisa ter no minimo um caracter especial';
+          if (!(/[0-9]/).test(value)) return 'Password precisa ter no minimo um numero';
           return true;
         },
       ],
