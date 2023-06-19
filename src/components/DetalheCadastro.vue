@@ -1,6 +1,14 @@
 <script>
 export default {
   data: () => ({
+    Username: "",
+    UsernameRules: [
+      (value) => {
+        if (value.includes(" ")) return "Username nao deve conter espaço";
+        if (value.includes()) return "Username nao deve conter letra maiuscula";
+        return true;
+      },
+    ],
     email: "",
     emailRules: [
       (value) => {
@@ -14,7 +22,17 @@ export default {
     password: "",
     passwordRules: [
       (value) => {
-        if (!value) return "Password must be at least 1 character.";
+        if (value.length < 8) return "Password must be at least 8 character.";
+        if (va) return "Password precisa ter no minimo um numero";
+        return true;
+      },
+    ],
+    show1: false,
+    show2: true,
+    confirmpassword: "",
+    confirmpasswordRules: [
+      (value) => {
+        passwordconf;
       },
     ],
     isFormValid: true,
@@ -25,7 +43,11 @@ export default {
       if (!this.isFormValid) return;
     },
     handleClick() {
-      this.$router.push('/cadastro');
+      this.$router.push('/');
+    },
+    passwordconf(value) {
+      if (value !== this.password) return "Password incorreta";
+      return true;
     },
   },
 };
@@ -36,7 +58,7 @@ export default {
     <v-container class="h-75 w-75 rounded-xl bg-white d-flex align-center">
       <v-row class="h-100 w-100 d-flex align-center">
         <v-col class="w-50 h-100 bg-white d-flex align-center">
-          <v-img class="rounded-xl" src="bg3.png" cover></v-img>
+          <v-img class="rounded-xl rounded-be-0" src="bg3.png" cover></v-img>
         </v-col>
 
         <v-col
@@ -45,13 +67,21 @@ export default {
           <v-sheet class="w-75 text-amber-darken-3">
             <v-form @submit.prevent v-model="isFormValid">
               <v-text-field
+                v-model="Username"
+                label="Username"
+                clearable
+                hide-details="auto"
+                :rules="UsernameRules"
+              >
+              </v-text-field>
+
+              <v-text-field
                 v-model="email"
                 type="emai"
                 label="Email"
                 clearable
                 hide-details="auto"
                 :rules="emailRules"
-                class="bg-transparent"
               >
               </v-text-field>
 
@@ -66,27 +96,37 @@ export default {
                 :rules="passwordRules"
               ></v-text-field>
 
+              <v-text-field
+                v-model="confirmpassword"
+                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                :type="show1 ? 'text' : 'password'"
+                label="Confirm Password"
+                @click:append="show1 = !show1"
+                clearable
+                hide-details="auto"
+                :rules="[passwordconf]"
+              ></v-text-field>
+
               <v-btn
                 type="submit"
-                variant="outlined"
                 :disabled="!isFormValid"
                 @click="handleSubmit"
                 block
                 class="mt-2 bg-transparent"
-                >Login</v-btn
+                >Cadastro</v-btn
               >
-              <v-btn
+              <v-btn 
                 type="button"
                 variant="outlined"
                 @click="handleClick"
                 block
                 class="mt-2 bg-transparent"
-                >Cadastro</v-btn
+                >Login</v-btn
               >
             </v-form>
           </v-sheet>
-          <div class="ml-10 pl-16 img-container">
-            <v-img class="w-75" src="bee2.png" position="absolute" cover></v-img>
+          <div class="ml-16 pl-16 img-container">
+            <v-img class="w-50" src="bee.png" position="absolute" cover></v-img>
           </div>
         </v-col>
       </v-row>
