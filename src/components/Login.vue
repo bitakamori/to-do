@@ -4,9 +4,9 @@ export default {
     email: "",
     emailRules: [
       (value) => {
-        if (!value) return "Email must be at least 1 character.";
+        if (!value) return "Insira seu Email";
         if (/\S+@\S+\.\S+/.test(value)) return true;
-        return "Email must be valid";
+        return "Insira um email valido";
       },
     ],
     show1: false,
@@ -14,7 +14,7 @@ export default {
     password: "",
     passwordRules: [
       (value) => {
-        if (!value) return "Password must be at least 1 character.";
+        if (!value) return "Insira sua senha";
       },
     ],
     isFormValid: true,
@@ -59,7 +59,7 @@ export default {
                 v-model="password"
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="show1 ? 'text' : 'password'"
-                label="Password"
+                label="Senha"
                 @click:append="show1 = !show1"
                 clearable
                 hide-details="auto"
