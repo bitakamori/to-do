@@ -15,9 +15,9 @@ export default {
     // emailRegex: /\S+@\S+\.\S+/,
     emailRules: [
       (value) => {
-        if (!value) return "Email must be at least 1 character.";
+        if (!value) return "Insira seu Email";
         if ((/\S+@\S+\.\S+/).test(value)) return true;
-        return "Email must be valid";
+        return "Insira um email valido";
       },
     ],
     show1: false,
@@ -27,10 +27,10 @@ export default {
       // numberRegex: /[0-9]/,
       passwordRules: [
         value => {
-          if (value.length < 8) return 'Password must be at least 8 character.';
+          if (value.length < 8) return 'Senha deve conter pelo menos 8 caracteres';
           console.log(value.length)
-          if (!(/[!@#$%^&*]/).test(value)) return 'Password precisa ter no minimo um caracter especial';
-          if (!(/[0-9]/).test(value)) return 'Password precisa ter no minimo um numero';
+          if (!(/[!@#$%^&*]/).test(value)) return 'Senha precisa ter no mínimo um caracter especial';
+          if (!(/[0-9]/).test(value)) return 'Senha precisa ter no mínimo um numero';
           return true;
         },
       ],
@@ -53,7 +53,7 @@ export default {
       this.$router.push('/');
     },
     passwordconf(value) {
-      if (value !== this.password) return "Password incorreta";
+      if (value !== this.password) return "Senha incorreta";
       return true;
     },
   },
@@ -96,7 +96,7 @@ export default {
                 v-model="password"
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="show1 ? 'text' : 'password'"
-                label="Password"
+                label="Senha"
                 @click:append="show1 = !show1"
                 clearable
                 hide-details="auto"
@@ -107,7 +107,7 @@ export default {
                 v-model="confirmpassword"
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="show1 ? 'text' : 'password'"
-                label="Confirm Password"
+                label="Confirmar Senha"
                 @click:append="show1 = !show1"
                 clearable
                 hide-details="auto"
@@ -121,7 +121,7 @@ export default {
                 @click="handleSubmit"
                 block
                 class="mt-2 bg-transparent"
-                >Cadastro</v-btn
+                >Cadastrar</v-btn
               >
               <v-btn 
                 type="button"
