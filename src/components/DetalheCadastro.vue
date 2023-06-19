@@ -116,6 +116,7 @@ export default {
 
               <v-btn
                 type="submit"
+                variant="outlined"
                 :disabled="!isFormValid"
                 @click="handleSubmit"
                 block
