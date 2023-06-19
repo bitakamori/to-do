@@ -26,24 +26,25 @@ export default {
       event.preventDefault();
       if (!this.isFormValid) return;
     },
-    handleClick(event) {
-      event.preventDefault();
-      if (!this.isFormValid) return;
+    handleClick() {
+      this.$router.push('/cadastro');
     },
   },
 };
 </script>
 
 <template>
-  <main class="bg-red w-100 h-100 bg-amber-lighten-3 d-flex align-center">
+  <main class="w-100 h-100  d-flex align-center">
     <v-container class="h-75 w-75 rounded-xl bg-white d-flex align-center">
-      <v-row class="d-flex align-center">
-        <v-col class="w-50 bg-red">
+      <v-row class="h-100 w-100 d-flex align-center">
+        <v-col class="w-50 h-100 bg-white d-flex align-center">
           <v-img class="rounded-xl" src="bg1.png" cover></v-img>
         </v-col>
 
-        <v-col class="w-50 h-100 d-flex justify-center">
-          <v-sheet  class="w-75 text-amber-darken-4 bg-transparent">
+        <v-col
+          class="w-50 h-100 d-flex justify-center align-center flex-column relative"
+        >
+          <v-sheet class="w-75 text-amber-darken-3">
             <v-form @submit.prevent v-model="isFormValid">
               <v-text-field
                 v-model="email"
@@ -67,7 +68,7 @@ export default {
                 :rules="passwordRules"
               ></v-text-field>
 
-              <v-btn 
+              <v-btn
                 type="submit"
                 variant="outlined"
                 :disabled="!isFormValid"
@@ -76,7 +77,7 @@ export default {
                 class="mt-2 bg-transparent"
                 >Login</v-btn
               >
-              <v-btn 
+              <v-btn
                 type="button"
                 variant="outlined"
                 @click="handleClick"
@@ -84,11 +85,13 @@ export default {
                 class="mt-2 bg-transparent"
                 >Cadastro</v-btn
               >
-              
             </v-form>
 
             <RouterView />
           </v-sheet>
+          <div class="ml-16 pl-16 img-container">
+            <v-img class="w-50" src="bee.png" position="absolute" cover></v-img>
+          </div>
         </v-col>
       </v-row>
     </v-container>
@@ -102,5 +105,14 @@ export default {
 
 :root {
   overflow: hidden;
+}
+
+.img-container {
+  position: absolute;
+  bottom: 35px;
+}
+
+.relative {
+  position: relative;
 }
 </style>
