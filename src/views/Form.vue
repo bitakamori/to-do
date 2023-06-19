@@ -9,6 +9,7 @@ export default {
         return "You must enter a first name.";
       },
     ],
+    isFormValid: true
   }),
   methods: {
     handleSubmit (event) {
