@@ -2,38 +2,45 @@
 export default {
   data: () => ({
     Username: "",
+    // lowerCaseRegex:/^[a-z]+$/,
     UsernameRules: [
       (value) => {
+        if(!value) return "Insira seu Username"
         if (value.includes(" ")) return "Username nao deve conter espaço";
-        if (value.includes()) return "Username nao deve conter letra maiuscula";
-        return true;
+        if ((/^[a-z]+$/).test(value)) return true;
+        return "Username nao deve conter letra maiuscula"; 
       },
     ],
     email: "",
+    // emailRegex: /\S+@\S+\.\S+/,
     emailRules: [
       (value) => {
         if (!value) return "Email must be at least 1 character.";
-        if (/\S+@\S+\.\S+/.test(value)) return true;
+        if ((/\S+@\S+\.\S+/).test(value)) return true;
         return "Email must be valid";
       },
     ],
     show1: false,
-    show2: true,
-    password: "",
-    passwordRules: [
-      (value) => {
-        if (value.length < 8) return "Password must be at least 8 character.";
-        if (va) return "Password precisa ter no minimo um numero";
-        return true;
-      },
-    ],
-    show1: false,
-    show2: true,
-    confirmpassword: "",
-    confirmpasswordRules: [
-      (value) => {
-        passwordconf;
-      },
+      show2: true,
+      password: '',
+      // specialCharRegex: /[!@#$%^&*]/,
+      // numberRegex: /[0-9]/,
+      passwordRules: [
+        value => {
+          if (value.length < 8) return 'Password must be at least 8 character.';
+          console.log(value.length)
+          if (!(/[!@#$%^&*]/).test(value)) return 'Password precisa ter no minimo um caracter especial';
+          if (!(/[0-9]/).test(value)) return 'Password precisa ter no minimo um numero';
+          return true;
+        },
+      ],
+      show1: false,
+      show2: true,
+      confirmpassword: '',
+      confirmpasswordRules: [
+        value => {
+            passwordconf
+        },
     ],
     isFormValid: true,
   }),
@@ -58,7 +65,7 @@ export default {
     <v-container class="h-75 w-75 rounded-xl bg-white d-flex align-center">
       <v-row class="h-100 w-100 d-flex align-center">
         <v-col class="w-50 h-100 bg-white d-flex align-center">
-          <v-img class="rounded-xl rounded-be-0" src="bg3.png" cover></v-img>
+          <v-img class="rounded-xl rounded-be-0" src="/public/bg3.png" cover></v-img>
         </v-col>
 
         <v-col
@@ -109,6 +116,7 @@ export default {
 
               <v-btn
                 type="submit"
+                variant="outlined"
                 :disabled="!isFormValid"
                 @click="handleSubmit"
                 block
@@ -126,7 +134,7 @@ export default {
             </v-form>
           </v-sheet>
           <div class="ml-16 pl-16 img-container">
-            <v-img class="w-50" src="bee.png" position="absolute" cover></v-img>
+            <v-img class="w-50" src="/public/bee.png" position="absolute" cover></v-img>
           </div>
         </v-col>
       </v-row>
