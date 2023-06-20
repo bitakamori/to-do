@@ -56,7 +56,7 @@ export default {
       if (!this.isFormValid) return;
     },
     handleClick() {
-      this.$router.push("/");
+      this.$router.push("/login");
     },
     passwordconf(value) {
       if (value !== this.password) return "Senha incorreta";
