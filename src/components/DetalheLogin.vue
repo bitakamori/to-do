@@ -36,6 +36,7 @@ export default {
 </script>
 
 <template>
+  <h1 class="text-button text-amber-darken-3 pb-3">Login</h1>
   <v-sheet class="w-75 text-amber-darken-3">
     <v-form @submit.prevent v-model="isFormValid">
       <v-text-field
