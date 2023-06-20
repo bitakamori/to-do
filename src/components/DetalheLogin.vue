@@ -75,7 +75,7 @@ export default {
         @click="handleClick"
         block
         class="mt-2 bg-transparent"
-        >Cadastro</v-btn
+        >Cadastrar</v-btn
       >
     </v-form>
   </v-sheet>
