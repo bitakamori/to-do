@@ -1,6 +1,9 @@
 <script>
 export default {
-  data: () => ({
+  data: () => {
+    const emailRegex= /\S+@\S+\.\S+/;
+
+    return {
     email: "",
     emailRules: [
       (value) => {
@@ -18,7 +21,8 @@ export default {
       },
     ],
     isFormValid: true,
-  }),
+  };
+},
   methods: {
     handleSubmit(event) {
       event.preventDefault();
@@ -32,52 +36,57 @@ export default {
 </script>
 
 <template>
-          <v-sheet class="w-75 text-amber-darken-3">
-            <v-form @submit.prevent v-model="isFormValid">
-              <v-text-field
-                v-model="email"
-                type="emai"
-                label="Email"
-                clearable
-                hide-details="auto"
-                :rules="emailRules"
-                class="bg-transparent"
-              >
-              </v-text-field>
+  <v-sheet class="w-75 text-amber-darken-3">
+    <v-form @submit.prevent v-model="isFormValid">
+      <v-text-field
+        v-model="email"
+        type="emai"
+        label="Email"
+        clearable
+        hide-details="auto"
+        :rules="emailRules"
+        class="bg-transparent"
+      >
+      </v-text-field>
 
-              <v-text-field
-                v-model="password"
-                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                :type="show1 ? 'text' : 'password'"
-                label="Senha"
-                @click:append="show1 = !show1"
-                clearable
-                hide-details="auto"
-                :rules="passwordRules"
-              ></v-text-field>
+      <v-text-field
+        v-model="password"
+        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+        :type="show1 ? 'text' : 'password'"
+        label="Senha"
+        @click:append="show1 = !show1"
+        clearable
+        hide-details="auto"
+        :rules="passwordRules"
+      ></v-text-field>
 
-              <v-btn
-                type="submit"
-                variant="outlined"
-                :disabled="!isFormValid"
-                @click="handleSubmit"
-                block
-                class="mt-2 bg-transparent"
-                >Login</v-btn
-              >
-              <v-btn
-                type="button"
-                variant="outlined"
-                @click="handleClick"
-                block
-                class="mt-2 bg-transparent"
-                >Cadastro</v-btn
-              >
-            </v-form>
-          </v-sheet>
-          <div class="ml-10 pl-16 img-container">
-            <v-img class="w-75" src="/public/bee2.png" position="absolute" cover></v-img>
-          </div>
+      <v-btn
+        type="submit"
+        variant="outlined"
+        :disabled="!isFormValid"
+        @click="handleSubmit"
+        block
+        class="mt-2 bg-transparent"
+        >Login</v-btn
+      >
+      <v-btn
+        type="button"
+        variant="outlined"
+        @click="handleClick"
+        block
+        class="mt-2 bg-transparent"
+        >Cadastro</v-btn
+      >
+    </v-form>
+  </v-sheet>
+  <div class="ml-10 pl-16 img-container">
+    <v-img
+      class="w-75"
+      src="/public/bee2.png"
+      position="absolute"
+      cover
+    ></v-img>
+  </div>
 </template>
 
 <style>
