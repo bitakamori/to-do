@@ -1,7 +1,7 @@
 <template>
-  <Login />
+  <Homedohome />
 </template>
 
 <script setup>
-  import Login from '@/components/Login.vue'
+  import Homedohome from '@/components/Homedohome.vue';
 </script>

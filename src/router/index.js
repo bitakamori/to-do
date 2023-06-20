@@ -24,6 +24,11 @@ const routes = [
         name: 'Cadastro',
         component: () => import ('@/views/Cadastro.vue'),
       },
+      {
+        path: 'login',
+        name: 'Login',
+        component: () => import ('@/views/Login.vue'),
+      },
     ],
   },
 ]
