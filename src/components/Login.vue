@@ -32,16 +32,6 @@ export default {
 </script>
 
 <template>
-  <main class="w-100 h-100  d-flex align-center">
-    <v-container class="h-75 w-75 rounded-xl bg-white d-flex align-center">
-      <v-row class="h-100 w-100 d-flex align-center">
-        <v-col class="w-50 h-100 bg-white d-flex align-center">
-          <v-img class="rounded-xl" src="/public/bg3.png" cover></v-img>
-        </v-col>
-
-        <v-col
-          class="w-50 h-100 d-flex justify-center align-center flex-column relative"
-        >
           <v-sheet class="w-75 text-amber-darken-3">
             <v-form @submit.prevent v-model="isFormValid">
               <v-text-field
@@ -88,10 +78,6 @@ export default {
           <div class="ml-10 pl-16 img-container">
             <v-img class="w-75" src="/public/bee2.png" position="absolute" cover></v-img>
           </div>
-        </v-col>
-      </v-row>
-    </v-container>
-  </main>
 </template>
 
 <style>
