@@ -1,56 +1,63 @@
 <script>
 export default {
-  data: () => ({
-    Username: "",
-    // lowerCaseRegex:/^[a-z]+$/,
-    UsernameRules: [
-      (value) => {
-        if(!value) return "Insira seu Username"
-        if (value.includes(" ")) return "Username nao deve conter espaço";
-        if ((/^[a-z]+$/).test(value)) return true;
-        return "Username nao deve conter letra maiuscula"; 
-      },
-    ],
-    email: "",
-    // emailRegex: /\S+@\S+\.\S+/,
-    emailRules: [
-      (value) => {
-        if (!value) return "Insira seu Email";
-        if ((/\S+@\S+\.\S+/).test(value)) return true;
-        return "Insira um email valido";
-      },
-    ],
-    show1: false,
+  data: () => {
+
+    
+    return {
+      Username: "",
+      // lowerCaseRegex:/^[a-z]+$/,
+      UsernameRules: [
+        (value) => {
+          if (!value) return "Insira seu Username";
+          if (value.includes(" ")) return "Username nao deve conter espaço";
+          if (/^[a-z]+$/.test(value)) return true;
+          return "Username nao deve conter letra maiuscula";
+        },
+      ],
+      email: "",
+      // emailRegex: /\S+@\S+\.\S+/,
+      emailRules: [
+        (value) => {
+          if (!value) return "Insira seu Email";
+          if (/\S+@\S+\.\S+/.test(value)) return true;
+          return "Insira um email valido";
+        },
+      ],
+      show1: false,
       show2: true,
-      password: '',
+      password: "",
       // specialCharRegex: /[!@#$%^&*]/,
       // numberRegex: /[0-9]/,
       passwordRules: [
-        value => {
-          if (value.length < 8) return 'Senha deve conter pelo menos 8 caracteres';
-          console.log(value.length)
-          if (!(/[!@#$%^&*]/).test(value)) return 'Senha precisa ter no mínimo um caracter especial';
-          if (!(/[0-9]/).test(value)) return 'Senha precisa ter no mínimo um numero';
+        (value) => {
+          if (value.length < 8)
+            return "Senha deve conter pelo menos 8 caracteres";
+          console.log(value.length);
+          if (!/[!@#$%^&*]/.test(value))
+            return "Senha precisa ter no mínimo um caracter especial";
+          if (!/[0-9]/.test(value))
+            return "Senha precisa ter no mínimo um numero";
           return true;
         },
       ],
       show1: false,
       show2: true,
-      confirmpassword: '',
+      confirmpassword: "",
       confirmpasswordRules: [
-        value => {
-            passwordconf
+        (value) => {
+          passwordconf;
         },
-    ],
-    isFormValid: true,
-  }),
+      ],
+      isFormValid: true,
+    };
+  },
   methods: {
     handleSubmit(event) {
       event.preventDefault();
       if (!this.isFormValid) return;
     },
     handleClick() {
-      this.$router.push('/');
+      this.$router.push("/");
     },
     passwordconf(value) {
       if (value !== this.password) return "Senha incorreta";
@@ -61,16 +68,6 @@ export default {
 </script>
 
 <template>
-  <main class="w-100 h-100  d-flex align-center">
-    <v-container class="h-75 w-75 rounded-xl bg-white d-flex align-center">
-      <v-row class="h-100 w-100 d-flex align-center">
-        <v-col class="w-50 h-100 bg-white d-flex align-center">
-          <v-img class="rounded-xl rounded-be-0" src="/public/bg3.png" cover></v-img>
-        </v-col>
-
-        <v-col
-          class="w-50 h-100 d-flex justify-center align-center flex-column relative"
-        >
           <v-sheet class="w-75 text-amber-darken-3">
             <v-form @submit.prevent v-model="isFormValid">
               <v-text-field
@@ -123,7 +120,7 @@ export default {
                 class="mt-2 bg-transparent"
                 >Cadastrar</v-btn
               >
-              <v-btn 
+              <v-btn
                 type="button"
                 variant="outlined"
                 @click="handleClick"
@@ -134,12 +131,13 @@ export default {
             </v-form>
           </v-sheet>
           <div class="ml-16 pl-16 img-container">
-            <v-img class="w-50" src="/public/bee.png" position="absolute" cover></v-img>
+            <v-img
+              class="w-50"
+              src="/public/bee.png"
+              position="absolute"
+              cover
+            ></v-img>
           </div>
-        </v-col>
-      </v-row>
-    </v-container>
-  </main>
 </template>
 
 <style>
