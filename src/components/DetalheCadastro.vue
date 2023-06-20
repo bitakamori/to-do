@@ -1,41 +1,40 @@
 <script>
 export default {
   data: () => {
-
+    const lowerCaseRegex= /^[a-z]+$/;
+    const emailRegex= /\S+@\S+\.\S+/;
+    const specialCharRegex= /[!@#$%^&*]/;
+    const numberRegex= /[0-9]/;
     
     return {
       Username: "",
-      // lowerCaseRegex:/^[a-z]+$/,
       UsernameRules: [
         (value) => {
           if (!value) return "Insira seu Username";
           if (value.includes(" ")) return "Username nao deve conter espaço";
-          if (/^[a-z]+$/.test(value)) return true;
+          if (lowerCaseRegex.test(value)) return true;
           return "Username nao deve conter letra maiuscula";
         },
       ],
       email: "",
-      // emailRegex: /\S+@\S+\.\S+/,
       emailRules: [
         (value) => {
           if (!value) return "Insira seu Email";
-          if (/\S+@\S+\.\S+/.test(value)) return true;
+          if (emailRegex.test(value)) return true;
           return "Insira um email valido";
         },
       ],
       show1: false,
       show2: true,
       password: "",
-      // specialCharRegex: /[!@#$%^&*]/,
-      // numberRegex: /[0-9]/,
       passwordRules: [
         (value) => {
           if (value.length < 8)
             return "Senha deve conter pelo menos 8 caracteres";
           console.log(value.length);
-          if (!/[!@#$%^&*]/.test(value))
+          if (!specialCharRegex.test(value))
             return "Senha precisa ter no mínimo um caracter especial";
-          if (!/[0-9]/.test(value))
+          if (!numberRegex.test(value))
             return "Senha precisa ter no mínimo um numero";
           return true;
         },
