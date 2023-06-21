@@ -130,7 +130,7 @@ export default {
               >
             </v-form>
           </v-sheet>
-          <div class="ml-16 pl-16 img-container">
+          <div class="pl-16 ml-16 img-container">
             <v-img
               class="w-50"
               src="/public/bee.png"
