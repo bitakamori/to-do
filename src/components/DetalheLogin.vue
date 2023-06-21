@@ -2,7 +2,7 @@
 export default {
   data: () => {
     const emailRegex= /\S+@\S+\.\S+/;
-    const specialCharRegex= /[!@#$%^&*]/;
+    const specialCharRegex= /[!#$%^&*]/;
 
     return {
     email: "",

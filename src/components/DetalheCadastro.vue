@@ -4,6 +4,7 @@ export default {
     const lowerCaseRegex= /^[a-z]+$/;
     const emailRegex= /\S+@\S+\.\S+/;
     const specialCharRegex= /[!@#$%^&*]/;
+    const specialCharRegexEmail= /[!#$%^&*]/;
     const numberRegex= /[0-9]/;
     
     return {
@@ -21,7 +22,7 @@ export default {
         (value) => {
           if (!value) return "Insira seu Email";
           if (value.includes(" ")) return "Email nao deve conter espaço";
-          if (specialCharRegex.test(value))
+          if (specialCharRegexEmail.test(value))
             return "Email não pode ter caracter especial";
           if (emailRegex.test(value)) return true;
           return "Insira um email valido";
