@@ -13,7 +13,7 @@ export default {
 
 <template>
 
-  <v-sheet class="w-75 pt-16 mt-16 text-amber-darken-3">
+  <v-sheet class="w-75 pt-md-16 mt-md-16 text-amber-darken-3">
     <!-- <v-form @submit.prevent v-model="isFormValid"> -->
     <v-btn
       type="submit"

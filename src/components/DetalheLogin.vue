@@ -2,13 +2,17 @@
 export default {
   data: () => {
     const emailRegex= /\S+@\S+\.\S+/;
+    const specialCharRegex= /[!#$%^&*]/;
 
     return {
     email: "",
     emailRules: [
       (value) => {
         if (!value) return "Insira seu Email";
-        if (/\S+@\S+\.\S+/.test(value)) return true;
+        if (value.includes(" ")) return "Username nao deve conter espaço";
+        if (specialCharRegex.test(value))
+            return "Email não pode ter caracter especial";
+        if (emailRegex.test(value)) return true;
         return "Insira um email valido";
       },
     ],
