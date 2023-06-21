@@ -8,6 +8,7 @@ export default {
     emailRules: [
       (value) => {
         if (!value) return "Insira seu Email";
+        if (value.includes(" ")) return "Username nao deve conter espaço";
         if (/\S+@\S+\.\S+/.test(value)) return true;
         return "Insira um email valido";
       },
