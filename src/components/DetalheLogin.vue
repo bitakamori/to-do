@@ -1,39 +1,74 @@
 <script>
+import { setupPrivateApi } from "@/api";
+import { authApiMixin } from "@/api/auth";
 export default {
+  mixins: [authApiMixin],
   data: () => {
-    const emailRegex= /\S+@\S+\.\S+/;
-    const specialCharRegex= /[!#$%^&*]/;
+     const emailRegex = /\S+@\S+\.\S+/;
+     const specialCharRegex = /[!#$%^&*]/;
 
     return {
-    email: "",
-    emailRules: [
-      (value) => {
-        if (!value) return "Insira seu Email";
-        if (value.includes(" ")) return "Username nao deve conter espaço";
-        if (specialCharRegex.test(value))
+      email: "",
+      emailRules: [
+        (value) => {
+          if (!value) return "Insira seu Email";
+          if (value.includes(" ")) return "Username nao deve conter espaço";
+          if (specialCharRegex.test(value))
             return "Email não pode ter caracter especial";
-        if (emailRegex.test(value)) return true;
-        return "Insira um email valido";
-      },
-    ],
-    show1: false,
-    show2: true,
-    password: "",
-    passwordRules: [
-      (value) => {
-        if (!value) return "Insira sua senha";
-      },
-    ],
-    isFormValid: true,
-  };
-},
+          if (emailRegex.test(value)) return true;
+          return "Insira um email valido";
+        },
+      ],
+      // Username: "",
+      // UsernameRules: [
+      //   (value) => {
+      //     if (!value) return "Insira seu username";
+      //     return true;
+      //   },
+      // ],
+      show1: false,
+      show2: true,
+      password: "",
+      passwordRules: [
+        (value) => {
+          if (!value) return "Insira sua senha";
+        },
+      ],
+      isFormValid: true,
+    };
+  },
   methods: {
-    handleSubmit(event) {
-      event.preventDefault();
-      if (!this.isFormValid) return;
-    },
     handleClick() {
-      this.$router.push('/cadastro');
+      this.$router.push("/cadastro");
+    },
+    async handleSubmit() {
+      const payload = {
+        email: this.email,
+        password: this.password,
+      };
+      console.log(payload);
+      // try {
+      //   await this.login(payload);
+      //   alert("Login realizado com sucesso");
+      //   this.$router.push("/");
+      // } 
+      try {
+        const { data } = await this.login(payload);
+        const { access_token } = data;
+        setupPrivateApi(access_token);
+        localStorage.setItem("access_token", access_token);
+        this.$router.push("/dashboard");
+      } catch (err) {
+        alert("Algo deu errado");
+      }
+      // catch (err) {
+      //   const status = err.login.status;
+      //   if (status >= 500 && status < 600) {
+      //     alert("Ocorreu um erro no servidor! Tente mais tarde");
+      //   } else {
+      //     alert("Algo deu errado. Pedimos desculpas");
+      //   }
+      // }
     },
   },
 };
