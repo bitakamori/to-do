@@ -1,5 +1,7 @@
 <script>
+import { authApiMixin } from "@/api/auth";
 export default {
+  mixins: [authApiMixin],
   data: () => {
     const lowerCaseRegex= /^[a-z]+$/;
     const emailRegex= /\S+@\S+\.\S+/;
@@ -55,17 +57,33 @@ export default {
     };
   },
   methods: {
-    handleSubmit(event) {
-      event.preventDefault();
-      if (!this.isFormValid) return;
-    },
     handleClick() {
-      this.$router.push("/login");
-    },
+       this.$router.push("/login");
+     },
     passwordconf(value) {
       if (value !== this.password) return "Senha incorreta";
       return true;
     },
+    async handleSubmit () {
+      const payload = {
+        username: this.Username,
+        email: this.email,
+        password: this.password,
+      };
+
+      try {
+        await this.register(payload);
+        alert("Usuário criado com sucesso");
+        this.$router.push("/login");
+      } catch (err) {
+        const status = err.response.status;
+        if (status >= 500 && status < 600) {
+          alert("Ocorreu um erro no servidor! Tente mais tarde")
+        } else {
+          alert("Algo deu errado. Pedimos desculpas")
+        }
+      }
+    }
   },
 };
 </script>
