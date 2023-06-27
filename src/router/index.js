@@ -47,11 +47,6 @@ const routes = [
     name: "ListDetail",
     component: () => import("@/views/DetailList.vue"),
   },
-  {
-    path: "/teste",
-    name: "teste",
-    component: () => import("@/views/teste.vue"),
-  }
 ];
 
 const router = createRouter({
