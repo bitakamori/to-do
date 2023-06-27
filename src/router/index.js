@@ -47,6 +47,11 @@ const routes = [
     name: "ListDetail",
     component: () => import("@/views/DetailList.vue"),
   },
+  {
+    path: "/edit-list/:id",
+    name: "EditList",
+    component: () => import("@/views/EditList.vue"),
+  },
 ];
 
 const router = createRouter({

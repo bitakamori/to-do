@@ -7,8 +7,7 @@ export default {
   data() {
     return {
       items: [],
-      title: "",
-      newItem: null,
+      titleItem: "",
       listTitle: "",
       listId: this.$route.params.id,
     };
@@ -23,10 +22,43 @@ export default {
         console.log(err);
       }
     },
+    async createTask() {
+      try {
+        const item = {
+          title: this.titleItem,
+          listId: this.listId,
+        };
+        const { data } = await this.createItem(item);
+        this.items.push(data);
+      } catch (err) {
+        console.log(err);
+      } finally {
+        this.title = "";
+      }
+    },
     async deleteList() {
       try {
         await this.remove(this.listId);
         this.$router.push("/dashboard");
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    async deleteTask(itemId) {
+      try {
+        await this.removeItem(itemId);
+        this.showList();
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    async updateTitle() {
+        const payload = {
+          title: this.listTitle,
+        };
+        try {
+        console.log(this.listId)
+        await this.updateList(this.listId, payload);
       } catch (err) {
         console.log(err);
       }
@@ -37,13 +69,28 @@ export default {
   },
 };
 </script>
-
 <template>
   <v-container>
-    <h1>{{ listTitle }}</h1>
+    <v-text-field
+      v-model="listTitle"
+      @keydown.enter="updateTitle"
+      variant="solo"
+    ></v-text-field>
   </v-container>
 
   <v-container>
+    <v-text-field
+      v-model="titleItem"
+      label="Criar tarefa"
+      variant="solo"
+      @keydown.enter="createTask"
+    >
+      <template v-slot:append-inner>
+        <v-btn icon="mdi-plus-circle" variant="text" @click="createTask">
+        </v-btn>
+      </template>
+    </v-text-field>
+
     <v-card v-if="items.length > 0">
       <template v-for="(item, i) in items" :key="`${i}-${item.text}`">
         <v-divider v-if="i !== 0" :key="`${i}-divider`"></v-divider>
@@ -56,25 +103,27 @@ export default {
           </template>
           <v-list-item-title>
             <span :class="item.done ? 'text-grey' : 'text-primary'">
-              {{ item.title }}
+                <v-text-field>
+                    {{ item.title }}
+                </v-text-field>
             </span>
           </v-list-item-title>
           <template v-slot:append>
             <v-icon v-if="item.done" color="success">mdi-check</v-icon>
           </template>
+          <v-btn @click="deleteTask(item.id)">
+            <v-icon color="red"> mdi-close </v-icon>
+          </v-btn>
         </v-list-item>
       </template>
     </v-card>
     <br />
 
-    <v-form @submit.prevent="deleteList" class="w-50">
+    <v-form @submit.prevent="createTask" class="w-50">
       <v-btn @click="deleteList"> Deletar Lista </v-btn>
     </v-form>
     <v-btn>
-      <router-link to="/dashboard">Voltar </router-link>
-    </v-btn>
-    <v-btn>
-      <router-link :to="`/edit-list/${listId}`">Editar </router-link>
+      <router-link to="/dashboard">Salvar </router-link>
     </v-btn>
   </v-container>
 </template>
