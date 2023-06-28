@@ -32,25 +32,32 @@ const routes = [
       },
     ],
   },
+
   {
-    path: "/dashboard",
-    name: "Dashboard",
-    component: () => import("@/views/Dashboard.vue"),
-  },
-  {
-    path: "/new-list",
-    name: "CreateList",
-    component: () => import("@/views/CreateList.vue"),
-  },
-  {
-    path: "/list-detail/:id",
-    name: "ListDetail",
-    component: () => import("@/views/DetailList.vue"),
-  },
-  {
-    path: "/edit-list/:id",
-    name: "EditList",
-    component: () => import("@/views/EditList.vue"),
+    path: "/",
+    component: () => import("@/layouts/default/ViewLists.vue"),
+    children: [
+      {
+        path: "/dashboard",
+        name: "Dashboard",
+        component: () => import("@/views/Dashboard.vue"),
+      },
+      {
+        path: "/new-list",
+        name: "CreateList",
+        component: () => import("@/views/CreateList.vue"),
+      },
+      {
+        path: "/list-detail/:id",
+        name: "ListDetail",
+        component: () => import("@/views/DetailList.vue"),
+      },
+      {
+        path: "/edit-list/:id",
+        name: "EditList",
+        component: () => import("@/views/EditList.vue"),
+      },
+    ],
   },
 ];
 
