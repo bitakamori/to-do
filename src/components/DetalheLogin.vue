@@ -46,7 +46,7 @@ export default {
         email: this.email,
         password: this.password,
       };
-      console.log(payload);
+      // console.log(payload);
       // try {
       //   await this.login(payload);
       //   alert("Login realizado com sucesso");

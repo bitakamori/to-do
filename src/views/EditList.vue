@@ -51,7 +51,6 @@ export default {
         title: this.listTitle,
       };
       try {
-        console.log(this.listId);
         await this.updateList(this.listId, payload);
       } catch (err) {
         console.log(err);
