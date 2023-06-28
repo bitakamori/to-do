@@ -7,9 +7,10 @@ export default {
   data() {
     return {
       items: [],
-      titleItem: "",
+      title: "",
       listTitle: "",
       listId: this.$route.params.id,
+      newItem: null,
     };
   },
   methods: {
@@ -25,23 +26,16 @@ export default {
     async createTask() {
       try {
         const item = {
-          title: this.titleItem,
+          title: this.title,
           listId: this.listId,
         };
         const { data } = await this.createItem(item);
         this.items.push(data);
+        this.showList();
       } catch (err) {
         console.log(err);
       } finally {
         this.title = "";
-      }
-    },
-    async deleteList() {
-      try {
-        await this.remove(this.listId);
-        this.$router.push("/dashboard");
-      } catch (err) {
-        console.log(err);
       }
     },
     async deleteTask(itemId) {
@@ -53,12 +47,19 @@ export default {
       }
     },
     async updateTitle() {
-        const payload = {
-          title: this.listTitle,
-        };
-        try {
-        console.log(this.listId)
+      const payload = {
+        title: this.listTitle,
+      };
+      try {
+        console.log(this.listId);
         await this.updateList(this.listId, payload);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    async updTask(id, title) {
+      try {
+        await this.updateItem(id, { title });
       } catch (err) {
         console.log(err);
       }
@@ -80,7 +81,7 @@ export default {
 
   <v-container>
     <v-text-field
-      v-model="titleItem"
+      v-model="title"
       label="Criar tarefa"
       variant="solo"
       @keydown.enter="createTask"
@@ -95,22 +96,17 @@ export default {
       <template v-for="(item, i) in items" :key="`${i}-${item.text}`">
         <v-divider v-if="i !== 0" :key="`${i}-divider`"></v-divider>
         <v-list-item>
-          <template v-slot:prepend>
-            <v-checkbox-btn
-              v-model="item.done"
-              color="success"
-            ></v-checkbox-btn>
-          </template>
           <v-list-item-title>
-            <span :class="item.done ? 'text-grey' : 'text-primary'">
-                <v-text-field>
-                    {{ item.title }}
-                </v-text-field>
-            </span>
+            <v-text-field
+              @keydown.enter="updTask(item.id, item.title)"
+              variant="solo"
+              v-model="item.title"
+            >
+            </v-text-field>
           </v-list-item-title>
-          <template v-slot:append>
-            <v-icon v-if="item.done" color="success">mdi-check</v-icon>
-          </template>
+          <v-btn @click="updTask(item.id, item.title)">
+            <v-icon color="green"> mdi-check </v-icon>
+          </v-btn>
           <v-btn @click="deleteTask(item.id)">
             <v-icon color="red"> mdi-close </v-icon>
           </v-btn>
@@ -118,12 +114,10 @@ export default {
       </template>
     </v-card>
     <br />
-
-    <v-form @submit.prevent="createTask" class="w-50">
-      <v-btn @click="deleteList"> Deletar Lista </v-btn>
-    </v-form>
     <v-btn>
-      <router-link to="/dashboard">Salvar </router-link>
+      <router-link @click="updateTitle" :to="`/list-detail/${listId}`"
+        >Salvar
+      </router-link>
     </v-btn>
   </v-container>
 </template>

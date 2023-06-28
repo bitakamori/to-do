@@ -8,8 +8,9 @@ export const itemsApiMixin = {
     async removeItem(itemId) {
       return await privateApi.delete(`/items/${itemId}`);
     },
-    async updateItem(itemId) {
-      return await privateApi.patch(`/items/${itemId}`);
+    async updateItem(itemId, payload) {
+      const res = await privateApi.patch(`/items/${itemId}`, payload);
+      return res;
     },
   },
 };
