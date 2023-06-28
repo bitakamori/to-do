@@ -11,6 +11,8 @@ export default {
       newItem: null,
       listTitle: "",
       listId: this.$route.params.id,
+      showModal: false,
+      dialog: false,
     };
   },
   methods: {
@@ -24,6 +26,7 @@ export default {
       }
     },
     async deleteList() {
+      this.showModal = !this.showModal;
       try {
         await this.remove(this.listId);
         this.$router.push("/dashboard");
@@ -31,17 +34,16 @@ export default {
         console.log(err);
       }
     },
-    async updatedTask(item){
+    async updatedTask(item) {
       try {
         let updatetask = {
-          done: item.done
-        }
-      await this.updateItem(item.id, updatetask)
-      } 
-        catch (err) {
-        console.log(err)
+          done: item.done,
+        };
+        await this.updateItem(item.id, updatetask);
+      } catch (err) {
+        console.log(err);
       }
-    }
+    },
   },
   mounted() {
     this.showList();
@@ -61,7 +63,7 @@ export default {
         <v-list-item>
           <template v-slot:prepend>
             <v-checkbox-btn
-            @change="updatedTask(item)"
+              @change="updatedTask(item)"
               v-model="item.done"
               color="success"
             ></v-checkbox-btn>
@@ -80,7 +82,20 @@ export default {
     <br />
 
     <v-form @submit.prevent="deleteList" class="w-50">
-      <v-btn @click="deleteList"> Deletar Lista </v-btn>
+      <v-btn>
+        <v-dialog v-model="dialog" activator="parent">
+          <v-card>
+            <v-card-text>
+              Tem certeza que deseja deletar essa lista?
+            </v-card-text>
+            <v-card-actions>
+              <v-btn @click="deleteList">Sim </v-btn>
+              <v-btn @click="dialog = false"> Não </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+        Deletar Lista
+      </v-btn>
     </v-form>
     <v-btn>
       <router-link to="/dashboard">Home </router-link>
