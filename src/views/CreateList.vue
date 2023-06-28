@@ -8,6 +8,11 @@ export default {
     return {
       title: "",
       toDoList: [],
+      CreateListRules: [
+        (title) => {
+          if (!title) return "Insira um título para a lista";
+        }
+      ],
     };
   },
   methods: {
@@ -32,11 +37,11 @@ export default {
 
 <template>
 
-  <v-form @submit.prevent="saveList">
-    <v-text-field
-    v-model = "title">
+  <v-form class="d-flex flex-column align-center" @submit.prevent="saveList">
+    <v-text-field class="w-75 ma-2 text-amber-darken-3" variant="outlined"
+    v-model = "title" label="Título da Lista" :rules="CreateListRules">
     </v-text-field>
-    <v-btn @click="saveList">
+    <v-btn class="text-amber-darken-3" variant="outlined" @click="saveList" :disabled="!title" >
       Criar
     </v-btn>
   </v-form>

@@ -70,19 +70,19 @@ export default {
 };
 </script>
 <template>
-  <v-container>
+  <v-container class="w-75 text-amber-darken-3">
     <v-text-field
       v-model="listTitle"
       @keydown.enter="updateTitle"
-      variant="solo"
+      variant="outlined"
+      label="Título"
     ></v-text-field>
-  </v-container>
 
-  <v-container>
+  <v-container class="w-75 ">
     <v-text-field
       v-model="title"
-      label="Criar tarefa"
-      variant="solo"
+      label="Criar task"
+      variant="outlined"
       @keydown.enter="createTask"
     >
       <template v-slot:append-inner>
@@ -91,32 +91,34 @@ export default {
       </template>
     </v-text-field>
 
-    <v-card v-if="items.length > 0">
+    <v-card class="pt-2 w-75 text-amber-darken-3 d-flex flex-column justify-center" variant="text" v-if="items.length > 0">
       <template v-for="(item, i) in items" :key="`${i}-${item.text}`">
         <v-divider v-if="i !== 0" :key="`${i}-divider`"></v-divider>
-        <v-list-item>
-          <v-list-item-title>
+          
             <v-text-field
               @keydown.enter="updTask(item.id, item.title)"
-              variant="solo"
+              variant="outlined"
               v-model="item.title"
+              label="Task"
             >
+            
             </v-text-field>
-          </v-list-item-title>
-          <v-btn @click="updTask(item.id, item.title)">
+            <div> 
+              <v-btn variant="plain" @click="updTask(item.id, item.title)">
             <v-icon color="green"> mdi-check </v-icon>
           </v-btn>
-          <v-btn @click="deleteTask(item.id)">
+          <v-btn variant="plain" @click="deleteTask(item.id)">
             <v-icon color="red"> mdi-close </v-icon>
           </v-btn>
-        </v-list-item>
+            </div>
       </template>
     </v-card>
     <br />
-    <v-btn>
-      <router-link @click="updateTitle" :to="`/list-detail/${listId}`"
+    <v-btn class="text-amber-darken-3" variant="outlined" >
+      <router-link class="text-decoration-none text-amber-darken-3" @click="updateTitle" :to="`/list-detail/${listId}`"
         >Salvar
       </router-link>
     </v-btn>
   </v-container>
+</v-container>
 </template>
