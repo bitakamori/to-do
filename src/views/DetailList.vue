@@ -31,6 +31,17 @@ export default {
         console.log(err);
       }
     },
+    async updatedTask(item){
+      try {
+        let updatetask = {
+          done: item.done
+        }
+      await this.updateItem(item.id, updatetask)
+      } 
+        catch (err) {
+        console.log(err)
+      }
+    }
   },
   mounted() {
     this.showList();
@@ -50,6 +61,7 @@ export default {
         <v-list-item>
           <template v-slot:prepend>
             <v-checkbox-btn
+            @change="updatedTask(item)"
               v-model="item.done"
               color="success"
             ></v-checkbox-btn>
@@ -71,7 +83,7 @@ export default {
       <v-btn @click="deleteList"> Deletar Lista </v-btn>
     </v-form>
     <v-btn>
-      <router-link to="/dashboard">Voltar </router-link>
+      <router-link to="/dashboard">Home </router-link>
     </v-btn>
     <v-btn>
       <router-link :to="`/edit-list/${listId}`">Editar </router-link>
