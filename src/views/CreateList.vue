@@ -2,10 +2,16 @@
 
 import { toDoListsApiMixin } from "@/api/toDoLists";
 
+import Loading from "@/components/Loading.vue";
+
 export default {
+  components: {
+    Loading,
+  },
   mixins: [toDoListsApiMixin],
   data() {
     return {
+      loading: false,
       title: "",
       toDoList: [],
       CreateListRules: [
@@ -17,6 +23,7 @@ export default {
   },
   methods: {
     async saveList() {
+      this.loading = true;
       try {
         const title = {
         title: this.title
@@ -28,6 +35,7 @@ export default {
         console.log(err);
       } finally {
         this.title = "";
+        this.loading = false;
       }
     },
   },

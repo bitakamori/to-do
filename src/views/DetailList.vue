@@ -2,7 +2,12 @@
 import { toDoListsApiMixin } from "@/api/toDoLists";
 import { itemsApiMixin } from "@/api/itens";
 
+import Loading from "@/components/Loading.vue";
+
 export default {
+  components: {
+    Loading,
+  },
   mixins: [toDoListsApiMixin, itemsApiMixin],
   data() {
     return {
@@ -13,16 +18,20 @@ export default {
       listId: this.$route.params.id,
       showModal: false,
       dialog: false,
+      loading: false,
     };
   },
   methods: {
     async showList() {
+      this.loading = true;
       try {
         const { data } = await this.view(this.listId);
         this.items = data.items;
         this.listTitle = data.title;
       } catch (err) {
         console.log(err);
+      }finally {
+        this.loading = false;
       }
     },
     async deleteList() {
@@ -35,6 +44,7 @@ export default {
       }
     },
     async updatedTask(item) {
+      this.loading = true;
       try {
         let updatetask = {
           done: item.done,
@@ -42,6 +52,8 @@ export default {
         await this.updateItem(item.id, updatetask);
       } catch (err) {
         console.log(err);
+      }finally {
+        this.loading = false;
       }
     },
   },
@@ -52,6 +64,7 @@ export default {
 </script>
 
 <template>
+  <Loading v-if="loading"></Loading>
   <v-container>
     <p class="text-amber-darken-1 text-center font"> {{ listTitle }} </p>
   </v-container>
