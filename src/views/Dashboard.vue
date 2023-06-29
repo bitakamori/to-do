@@ -41,7 +41,7 @@ export default {
   </v-card>
 <br/>  
 <v-btn class="text-amber-darken-3" variant="outlined">
-    <router-link class="text-decoration-none text-amber-darken-3" to="/new-list">criar</router-link>
+    <router-link class="text-decoration-none text-amber-darken-3" to="/new-list">criar nova lista</router-link>
   </v-btn>
   </div>
 
