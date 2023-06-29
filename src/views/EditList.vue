@@ -2,7 +2,12 @@
 import { toDoListsApiMixin } from "@/api/toDoLists";
 import { itemsApiMixin } from "@/api/itens";
 
+import Loading from "@/components/Loading.vue";
+
 export default {
+  components: {
+    Loading,
+  },
   mixins: [toDoListsApiMixin, itemsApiMixin],
   data() {
     return {
@@ -11,21 +16,24 @@ export default {
       listTitle: "",
       listId: this.$route.params.id,
       newItem: null,
-      // loading: "",
+      loading: false,
     };
   },
   methods: {
     async showList() {
+      this.loading = true;
       try {
         const { data } = await this.view(this.listId);
         this.items = data.items;
         this.listTitle = data.title;
       } catch (err) {
         console.log(err);
+      }finally {
+        this.loading = false;
       }
     },
     async createTask() {
-      // this.loading = "title";
+      this.loading = true;
       try {
         const item = {
           title: this.title,
@@ -39,18 +47,22 @@ export default {
         console.log(err);
       } finally {
         this.title = "";
-        // this.loading = "";
+        this.loading = false;
       }
     },
     async deleteTask(itemId) {
+      this.loading = true;
       try {
         await this.removeItem(itemId);
         this.showList();
       } catch (err) {
         console.log(err);
+      } finally {
+        this.loading = false;
       }
     },
     async updateTitle() {
+      this.loading = true;
       const payload = {
         title: this.listTitle,
       };
@@ -58,13 +70,18 @@ export default {
         await this.updateList(this.listId, payload);
       } catch (err) {
         console.log(err);
+      } finally {
+        this.loading = false;
       }
     },
     async updTask(id, title) {
+      this.loading = true;
       try {
         await this.updateItem(id, { title });
       } catch (err) {
         console.log(err);
+      } finally {
+        this.loading = false;
       }
     },
   },
@@ -74,6 +91,7 @@ export default {
 };
 </script>
 <template>
+    <Loading v-if="loading"></Loading>
   <v-container class="w-75 text-amber-darken-3">
     <v-text-field
       v-model="listTitle"
@@ -97,7 +115,6 @@ export default {
           </v-btn>
         </template>
       </v-text-field>
-
       <v-card class="w-100" variant="text" v-if="items.length > 0">
         <template v-for="(item, i) in items" :key="`${i}-${item.text}`">
           <v-text-field
