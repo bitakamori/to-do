@@ -163,9 +163,7 @@ export default {
 </template>
 
 <style>
-:root {
-  overflow: hidden;
-}
+
 
 .img-container {
   position: absolute;

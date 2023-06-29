@@ -130,10 +130,6 @@ export default {
 </template>
 
 <style>
-:root {
-  overflow: hidden;
-}
-
 .img-container {
   position: absolute;
   bottom: 35px;
