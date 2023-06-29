@@ -28,4 +28,29 @@
   position: absolute;
   bottom: 35px;
 }
+
+
+body {
+  --sb-track-color: #f3eb7a;
+  --sb-thumb-color: #ffffff;
+  --sb-size: 10px;
+
+  scrollbar-color: var(--sb-thumb-color) 
+                   var(--sb-track-color);
+}
+
+body::-webkit-scrollbar {
+  width: var(--sb-size) 
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 10px;
+  
+  }
 </style>
