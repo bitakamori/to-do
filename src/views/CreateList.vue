@@ -50,17 +50,18 @@ export default {
     v-model = "title" label="Título da Lista" :rules="CreateListRules">
     </v-text-field>
   </v-form>
-  <div class="d-flex justify-center mb-2">
-      <v-btn class="text-amber-darken-3 mr-5" variant="outlined" >
+  <div class="d-flex flex-md-row flex-column justify-center align-center mb-md-2">
+    <v-btn class="text-amber-darken-3 mr-md-5 mb-3 mb-md-0" variant="outlined" @click="saveList" :disabled="!title" >
+      Criar lista
+    </v-btn>
+      <v-btn class="text-amber-darken-3" variant="outlined" >
         <router-link
           class="text-decoration-none text-amber-darken-3"
           to="/dashboard"
           >voltar para listas
         </router-link>
     </v-btn>
-    <v-btn class="text-amber-darken-3" variant="outlined" @click="saveList" :disabled="!title" >
-      Criar lista
-    </v-btn>
     </div>
 </template>
 
+<div class="d-flex flex-md-row flex-column justify-center align-center mb-md-2"></div>

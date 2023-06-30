@@ -107,7 +107,7 @@ export default {
       :rules="EditTitleRules"
     ></v-text-field>
 
-    <v-container class="w-75 d-flex flex-column align-center">
+    <v-container class="w-75 d-md-flex flex-md-column align-md-center">
       <v-text-field
         v-model="title"
         label="Criar task"
