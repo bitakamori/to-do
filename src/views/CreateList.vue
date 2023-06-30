@@ -49,8 +49,17 @@ export default {
     <v-text-field class="w-75 ma-2 text-amber-darken-3" variant="outlined"
     v-model = "title" label="Título da Lista" :rules="CreateListRules">
     </v-text-field>
-    <v-btn class="text-amber-darken-3" variant="outlined" @click="saveList" :disabled="!title" >
-      Criar
-    </v-btn>
   </v-form>
+  <div class="d-flex justify-center mb-2">
+      <v-btn class="text-amber-darken-3 mr-5" variant="outlined" >
+        <router-link
+          class="text-decoration-none text-amber-darken-3"
+          to="/dashboard"
+          >voltar para listas
+        </router-link>
+    </v-btn>
+    <v-btn class="text-amber-darken-3" variant="outlined" @click="saveList" :disabled="!title" >
+      Criar lista
+    </v-btn>
+    </div>
 </template>
