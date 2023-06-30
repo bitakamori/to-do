@@ -8,10 +8,10 @@
           <router-view />
         </v-col>
       </v-container>
-      <div class="w-25 mr-10 d-flex align-self-end img-container">
+      <div class="w-25 mr-md-10 d-flex align-self-end img-container" :class="img">
     <v-img
       src="/public/bee3.png"
-      position="absolute"
+      position="fixed"
       cover
     ></v-img>
   </div>
@@ -20,13 +20,27 @@
 </template>
 
 <script>
-//
+export default {
+  computed: {
+    img() {
+      return {
+        "w-50": this.$vuetify.display.smAndDown,
+      };
+    },
+  },
+}
 </script>
 
 <style>
 .img-container {
   position: absolute;
   bottom: 35px;
+}
+
+@media (max-width: 960px) {
+  .img-container { 
+  bottom: 0;
+}
 }
 
 

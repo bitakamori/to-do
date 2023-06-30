@@ -62,8 +62,8 @@ export default {
     </v-card>
     <br />
   </div>
-  <div class="d-flex justify-center mb-2">
-    <v-btn class="text-amber-darken-3 mr-5" variant="outlined">
+  <div class="d-flex flex-md-row flex-column justify-center align-center mb-md-2">
+    <v-btn class="text-amber-darken-3 mr-md-5 mb-2 mb-md-0" variant="outlined">
       <router-link
         class="text-decoration-none text-amber-darken-3"
         to="/new-list"

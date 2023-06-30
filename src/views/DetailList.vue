@@ -98,8 +98,8 @@ export default {
     </v-card>
     <br />
 
-    <div class="d-flex flex-row">
-      <v-btn class="text-amber-darken-3 mr-5" variant="outlined">
+    <div class="d-flex flex-md-row flex-column justify-center align-center">
+      <v-btn class="text-amber-darken-3 mr-md-5 mb-3 mb-md-0" variant="outlined">
         <v-dialog class="w-25" v-model="dialog" activator="parent">
           <v-card class="">
             <v-card-text
@@ -115,7 +115,7 @@ export default {
         </v-dialog>
         Deletar Lista
       </v-btn>
-      <v-btn class="text-amber-darken-3 mr-5" variant="outlined">
+      <v-btn class="text-amber-darken-3 mr-md-5 mb-3 mb-md-0" variant="outlined">
         <router-link
           class="text-decoration-none text-amber-darken-3"
           :to="`/edit-list/${listId}`"
