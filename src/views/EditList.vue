@@ -17,6 +17,11 @@ export default {
       listId: this.$route.params.id,
       newItem: null,
       loading: false,
+      EditTitleRules: [
+        (title) => {
+          if (!title) return "Insira um título para a lista";
+        }
+      ],
     };
   },
   methods: {
@@ -27,7 +32,7 @@ export default {
         this.items = data.items;
         this.listTitle = data.title;
       } catch (err) {
-        console.log(err);
+        alert("Algo deu errado, atualiza a pagina que vai, confia.");
       }finally {
         this.loading = false;
       }
@@ -44,7 +49,7 @@ export default {
         this.items.push(data);
         this.showList();
       } catch (err) {
-        console.log(err);
+        alert("Algo deu errado, atualiza a pagina que vai, confia.");
       } finally {
         this.title = "";
         this.loading = false;
@@ -56,7 +61,7 @@ export default {
         await this.removeItem(itemId);
         this.showList();
       } catch (err) {
-        console.log(err);
+        alert("Algo deu errado, atualiza a pagina que vai, confia.");
       } finally {
         this.loading = false;
       }
@@ -69,7 +74,7 @@ export default {
       try {
         await this.updateList(this.listId, payload);
       } catch (err) {
-        console.log(err);
+        alert("Algo deu errado, atualiza a pagina que vai, confia.");
       } finally {
         this.loading = false;
       }
@@ -79,7 +84,7 @@ export default {
       try {
         await this.updateItem(id, { title });
       } catch (err) {
-        console.log(err);
+        alert("Algo deu errado, atualiza a pagina que vai, confia.");
       } finally {
         this.loading = false;
       }
@@ -99,6 +104,7 @@ export default {
       variant="outlined"
       label="Título"
       clearable
+      :rules="EditTitleRules"
     ></v-text-field>
 
     <v-container class="w-75 d-flex flex-column align-center">

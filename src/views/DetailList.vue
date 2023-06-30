@@ -29,7 +29,7 @@ export default {
         this.items = data.items;
         this.listTitle = data.title;
       } catch (err) {
-        console.log(err);
+        alert("Algo deu errado, atualiza a pagina que vai, confia.");
       } finally {
         this.loading = false;
       }
@@ -40,7 +40,7 @@ export default {
         await this.remove(this.listId);
         this.$router.push("/dashboard");
       } catch (err) {
-        console.log(err);
+        alert("Algo deu errado, atualiza a pagina que vai, confia.");
       }
     },
     async updatedTask(item) {
@@ -50,7 +50,7 @@ export default {
         };
         await this.updateItem(item.id, updatetask);
       } catch (err) {
-        console.log(err);
+        alert("Algo deu errado, atualiza a pagina que vai, confia.");
       } 
     },
   },
