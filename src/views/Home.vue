@@ -12,7 +12,13 @@ export default {
 </script>
 
 <template>
-
+  <dir>
+    <v-img
+              class="rounded-xl rounded-be-0 d-md-none w-100 mb-5"
+              src="/public/bg3.png"
+              cover
+            ></v-img>
+  </dir>
   <v-sheet class="w-75 pt-md-16 mt-md-16 text-amber-darken-3">
     <!-- <v-form @submit.prevent v-model="isFormValid"> -->
     <v-btn

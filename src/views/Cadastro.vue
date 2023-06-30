@@ -85,13 +85,25 @@ export default {
       }
     }
   },
+  computed: {
+    col1(){
+      return {
+        "w-100": this.$vuetify.display.smAndDown,
+      }
+    },
+  }
 };
 </script>
 
 <template>
-  <h1 class="text-button text-amber-darken-3 pb-3">Cadastro</h1>
-          <v-sheet class="w-75 text-amber-darken-3">
-            <v-form @submit.prevent v-model="isFormValid">
+    <v-img
+              class="rounded-xl rounded-be-0 d-md-none mb-5"
+              src="/public/bgxl.png"
+              cover
+            ></v-img>
+    <h1 class="text-button text-amber-darken-3 pb-md-3">Cadastro</h1>
+          <v-sheet class="w-75 text-amber-darken-3" :class="col1">
+            <v-form @submit.prevent v-model="isFormValid"   >
               <v-text-field
                 v-model="Username"
                 label="Username"
@@ -113,10 +125,10 @@ export default {
 
               <v-text-field
                 v-model="password"
-                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                :append-inner-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="show1 ? 'text' : 'password'"
                 label="Senha"
-                @click:append="show1 = !show1"
+                @click:append-inner="show1 = !show1"
                 clearable
                 hide-details="auto"
                 :rules="passwordRules"
@@ -124,10 +136,10 @@ export default {
 
               <v-text-field
                 v-model="confirmpassword"
-                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                :append-inner-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="show1 ? 'text' : 'password'"
                 label="Confirmar Senha"
-                @click:append="show1 = !show1"
+                @click:append-inner="show1 = !show1"
                 clearable
                 hide-details="auto"
                 :rules="[passwordconf]"
@@ -152,25 +164,42 @@ export default {
               >
             </v-form>
           </v-sheet>
-          <div class="pl-16 ml-16 img-container">
+          <div class="pl-16 ml-16 d-none d-md-block img-container">
             <v-img
               class="w-50"
               src="/public/bee.png"
               position="absolute"
               cover
             ></v-img>
-          </div>
+          </div> 
+
+          <div class="img-container d-md-none d-flex w-50">
+            <v-img
+              class="w-50"
+              src="/public/beexl.png"
+              position="absolute"
+              cover
+            ></v-img>
+          </div> 
+  
 </template>
 
 <style>
-
-
 .img-container {
   position: absolute;
-  bottom: 35px;
+  bottom: 45px;
 }
 
-.relative {
-  position: relative;
+@media (max-width: 960px) {
+  .img-container {
+    width: 100%;
+
+}
+  
+}
+@media (min-width: 960px) {
+  .relative {
+    position: relative;
+}
 }
 </style>
