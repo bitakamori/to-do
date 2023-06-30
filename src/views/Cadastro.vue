@@ -36,7 +36,7 @@ export default {
       passwordRules: [
         (value) => {
           if (value.length < 8)
-            return "Senha deve conter pelo menos 8 caracteres";
+            return "Senha deve conter pelo menos 8 caracteres, sendo eles, no mínimo, um caracter especial e um numero";
           console.log(value.length);
           if (!specialCharRegex.test(value))
             return "Senha precisa ter no mínimo um caracter especial";

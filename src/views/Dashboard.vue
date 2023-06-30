@@ -27,7 +27,7 @@ export default {
         const { data } = await this.list();
         this.toDoLists = data;
       } catch (err) {
-        console.log(err);
+        alert("Algo deu errado, atualiza a pagina que vai, confia.");
       } finally {
         this.loading = false;
       }
