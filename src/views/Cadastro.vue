@@ -99,7 +99,6 @@ export default {
     <v-img
               class="rounded-xl rounded-be-0 d-md-none mb-5"
               src="/public/bgxl.png"
-              cover
             ></v-img>
     <h1 class="text-button text-amber-darken-3 pb-md-3">Cadastro</h1>
           <v-sheet class="w-75 text-amber-darken-3" :class="col1">
