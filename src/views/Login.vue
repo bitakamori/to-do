@@ -8,6 +8,7 @@ export default {
      const specialCharRegex = /[!#$%^&*]/;
 
     return {
+      loading: false,
       email: "bianca@mail.com",
       emailRules: [
         (value) => {
@@ -42,6 +43,7 @@ export default {
       this.$router.push("/cadastro");
     },
     async handleSubmit() {
+      this.loading = true;
       const payload = {
         email: this.email,
         password: this.password,
@@ -60,6 +62,8 @@ export default {
         this.$router.push("/dashboard");
       } catch (err) {
         alert("Algo deu errado");
+      } finally {
+        this.loading = false;
       }
       // catch (err) {
       //   const status = err.login.status;
@@ -114,6 +118,7 @@ export default {
       <v-btn
         type="submit"
         variant="outlined"
+        :loading="loading"
         :disabled="!isFormValid"
         @click="handleSubmit"
         block
