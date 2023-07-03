@@ -93,11 +93,19 @@ export default {
   mounted() {
     this.showList();
   },
+ computed: {
+  col1() {
+      return {
+        "w-100": this.$vuetify.display.smAndDown,
+        "h-100": this.$vuetify.display.smAndDown, 
+      };
+    },
+ }
 };
 </script>
 <template>
     <Loading v-if="loading"></Loading>
-  <v-container class="w-75 text-amber-darken-3">
+  <v-container class="w-75 text-amber-darken-3 pt-16 pt-md-4" :class="col1" >
     <v-text-field
       v-model="listTitle"
       @keydown.enter="updateTitle"
@@ -107,7 +115,7 @@ export default {
       :rules="EditTitleRules"
     ></v-text-field>
 
-    <v-container class="w-75 d-md-flex flex-md-column align-md-center">
+    <v-container class="w-75 d-md-flex flex-md-column align-md-center" :class="col1">
       <v-text-field
         v-model="title"
         label="Criar task"
@@ -142,7 +150,8 @@ export default {
         </template>
       </v-card>
       <br />
-      <v-btn class="w-25 text-amber-darken-3" variant="outlined">
+      <div class="d-flex justify-center">
+        <v-btn  class=" text-amber-darken-3" variant="outlined">
         <router-link
           class="text-decoration-none text-amber-darken-3"
           @click="updateTitle"
@@ -150,6 +159,7 @@ export default {
           >Salvar
         </router-link>
       </v-btn>
+      </div>
     </v-container>
   </v-container>
 </template>

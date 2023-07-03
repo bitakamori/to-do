@@ -1,14 +1,14 @@
 <template>
   <v-app>
-    <v-main class="bg-white w-100 h-auto d-flex flex-column justify-center">
+    <v-main class="bg-white w-100 h-auto d-flex flex-column justify-center" >
       <v-container
         class="bg-amber-lighten-4  h-auto w-75 rounded-xl d-flex align-center"
-      >
-        <v-col class="bg-white h-auto w-100 rounded-xl" >
+        :class="col1" >
+        <v-col class="bg-white h-auto w-100 rounded-xl d-flex flex-column justify-center" :class="col1" >
           <router-view />
         </v-col>
       </v-container>
-      <div class="w-25 mr-md-10 d-flex align-self-end img-container" :class="img">
+      <div class="w-25 mr-md-10 mb-2 mb-md-0 d-flex align-self-end img-container" :class="img">
     <v-img
       src="/public/bee3.png"
       position="fixed"
@@ -25,6 +25,12 @@ export default {
     img() {
       return {
         "w-50": this.$vuetify.display.smAndDown,
+      };
+    },
+    col1() {
+      return {
+        "w-100": this.$vuetify.display.smAndDown,
+        "h-100": this.$vuetify.display.smAndDown, 
       };
     },
   },

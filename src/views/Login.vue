@@ -133,7 +133,7 @@ export default {
   <div class="ml-md-10 pl-md-16 pl-14 img-container">
     <v-img
       class="w-75"
-      src="/public/bee2.png"
+      src="/public/bee3.png"
       cover
     ></v-img>
   </div>

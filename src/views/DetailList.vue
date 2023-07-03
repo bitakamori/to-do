@@ -62,8 +62,8 @@ export default {
 
 <template>
   <Loading v-if="loading"></Loading>
-  <v-container>
-    <p class="text-amber-darken-1 text-center font">{{ listTitle }}</p>
+  <v-container >
+    <p class="text-amber-darken-1 text-center text-truncate font">{{ listTitle }}</p>
   </v-container>
 
   <v-container class="text-amber-darken-1 d-flex flex-column align-center">
