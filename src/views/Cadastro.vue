@@ -10,6 +10,7 @@ export default {
     const numberRegex= /[0-9]/;
     
     return {
+      loading: false,
       Username: "",
       UsernameRules: [
         (value) => {
@@ -65,6 +66,7 @@ export default {
       return true;
     },
     async handleSubmit () {
+      this.loading = true;
       const payload = {
         username: this.Username,
         email: this.email,
@@ -81,7 +83,9 @@ export default {
           alert("Ocorreu um erro no servidor! Tente mais tarde")
         } else {
           alert("Algo deu errado. Pedimos desculpas")
-        }
+        } 
+      } finally {
+        this.loading = false;
       }
     }
   },
@@ -148,6 +152,7 @@ export default {
                 type="submit"
                 variant="outlined"
                 :disabled="!isFormValid"
+                :loading="loading"
                 @click="handleSubmit"
                 block
                 class="mt-2 bg-transparent"
