@@ -57,6 +57,14 @@ export default {
   mounted() {
     this.showList();
   },
+  computed: {
+  col1() {
+      return {
+        "w-75": this.$vuetify.display.smAndDown,
+        // "h-100": this.$vuetify.display.smAndDown, 
+      };
+    },
+ }
 };
 </script>
 
@@ -100,7 +108,7 @@ export default {
 
     <div class="d-flex flex-md-row flex-column justify-center align-center">
       <v-btn class="text-amber-darken-3 mr-md-5 mb-3 mb-md-0" variant="outlined">
-        <v-dialog class="w-25" v-model="dialog" activator="parent">
+        <v-dialog class="w-25" :class="col1" v-model="dialog" activator="parent">
           <v-card class="">
             <v-card-text
               class="text-amber-darken-4 text-overline d-flex justify-center text-center"
