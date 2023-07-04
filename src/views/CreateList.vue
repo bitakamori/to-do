@@ -45,9 +45,9 @@ export default {
 
 <template>
 
-  <v-form class="d-flex flex-column align-center" @submit.prevent="saveList">
+  <v-form class="d-flex flex-column align-center"  @submit.prevent="saveList">
     <v-text-field class="w-75 ma-2 text-amber-darken-3" variant="outlined"
-    v-model = "title" label="Título da Lista" :rules="CreateListRules">
+    v-model = "title" label="Título da Lista" clearable :rules="CreateListRules">
     </v-text-field>
   </v-form>
   <div class="d-flex flex-md-row flex-column justify-center align-center mb-md-2">
