@@ -1,6 +1,6 @@
 # To Do ✅
 
-![To Do]([https://bitakamori.github.io/meudiario/assets/banner.png](https://to-do-bitakamori.vercel.app/login)) 
+[To Do]([https://bitakamori.github.io/meudiario/assets/banner.png](https://to-do-bitakamori.vercel.app/login)) 
 
 To Do foi um dos primeiros projetos que realizei quando estava aprendendo a programar. Ele representa uma das minhas primeiras experiências no desenvolvimento de aplicações web, combinando simplicidade e criatividade. 
 
